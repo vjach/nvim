@@ -32,7 +32,7 @@ return {
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = { "lua", "python", "cpp" },
+                ensure_installed = { "lua", "python", "cpp", "cmake", "bash" },
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = false,
@@ -71,5 +71,5 @@ return {
         -- Apply the theme
         vim.cmd("colorscheme solarized8_flat")
       end,
-    },
+        },
 }
