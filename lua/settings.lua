@@ -5,7 +5,6 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
-vim.opt.termguicolors = true
 
 vim.keymap.set("n", "<leader>f", function()
   require("conform").format({

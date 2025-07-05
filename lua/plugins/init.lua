@@ -49,11 +49,27 @@ return {
     "nvim-tree/nvim-web-devicons",
     "nvim-lualine/lualine.nvim",
     {
-        "catppuccin/nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd.colorscheme("catppuccin-mocha")
-        end,
-    }
+      "lifepillar/vim-solarized8",
+      priority = 1000, -- Load before other plugins for correct colors
+      lazy = false,    -- Load immediately at startup
+      config = function()
+        -- Use 256-color mode (best for screen and most terminals)
+        vim.g.solarized_termcolors = 256
+        vim.g.solarized_visibility = "normal"
+        vim.g.solarized_diffmode = "high"
+        vim.g.solarized_statusline = "low"
+
+        -- Optional: prevent transparency issues
+        vim.g.solarized_termtrans = 0
+
+        -- Set your preferred background
+        vim.o.background = "dark" -- or "light"
+
+        -- Enable truecolor support if terminal allows
+        vim.opt.termguicolors = false
+
+        -- Apply the theme
+        vim.cmd("colorscheme solarized8_flat")
+      end,
+    },
 }
