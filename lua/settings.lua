@@ -12,3 +12,5 @@ vim.keymap.set("n", "<leader>f", function()
     lsp_fallback = true,
   })
 end, { desc = "Format file with conform.nvim" })
+
+vim.keymap.set("n",",b", "<cmd>ls<CR>:b ", { desc = "List buffers" })

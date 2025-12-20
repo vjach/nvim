@@ -10,17 +10,27 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
-            lspconfig.clangd.setup({
-                on_attach = function(_, bufnr)
-                    local map = function(mode, lhs, rhs, desc)
-                        vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-                    end
 
-                    map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-                    map("n", "gr", vim.lsp.buf.references, "Find references")
-                    map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-                    map("n", "K", vim.lsp.buf.hover, "Hover documentation")
-                end,
+            local on_attach = function(_, bufnr)
+                local opts = { noremap = true, silent = true, buffer = bufnr }
+
+                -- Keybindings
+                vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+            end
+            -- Python: pyright
+            lspconfig.pyright.setup({
+                on_attach = on_attach,
+            })
+
+            -- C++: clangd
+            lspconfig.clangd.setup({
+                on_attach = on_attach,
             })
         end,
     },
@@ -46,30 +56,22 @@ return {
 
     -- UI
     "nvim-tree/nvim-tree.lua",
-    "nvim-tree/nvim-web-devicons",
     "nvim-lualine/lualine.nvim",
     {
-      "lifepillar/vim-solarized8",
-      priority = 1000, -- Load before other plugins for correct colors
-      lazy = false,    -- Load immediately at startup
+      "EdenEast/nightfox.nvim",
+      lazy = false,
+      priority = 1000,
       config = function()
-        -- Use 256-color mode (best for screen and most terminals)
-        vim.g.solarized_termcolors = 256
-        vim.g.solarized_visibility = "normal"
-        vim.g.solarized_diffmode = "high"
-        vim.g.solarized_statusline = "low"
-
-        -- Optional: prevent transparency issues
-        vim.g.solarized_termtrans = 0
-
-        -- Set your preferred background
+         -- Set your preferred background
         vim.o.background = "dark" -- or "light"
-
-        -- Enable truecolor support if terminal allows
-        vim.opt.termguicolors = false
-
-        -- Apply the theme
-        vim.cmd("colorscheme solarized8_flat")
+        vim.opt.termguicolors = false -- disable truecolor for screen
+        vim.cmd.colorscheme("nordfox")
       end,
-        },
+    },
+    {
+      "github/copilot.vim", -- OR use 'zbirenbaum/copilot.lua' for async
+      config = function()
+        vim.cmd("Copilot enable")
+      end
+    }
 }
