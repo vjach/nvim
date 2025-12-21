@@ -1,76 +1,51 @@
 return {
-  "nvim-tree/nvim-tree.lua",
-  version = "*",
-  dependencies = {
-    -- Remove or comment this line if you don't want icon support at all
-    -- "nvim-tree/nvim-web-devicons",
-  },
-  config = function()
-    require("nvim-tree").setup({
-      hijack_netrw = true,
-      sync_root_with_cwd = true,
-      view = {
-        width = 30,
-        side = "left",
-        preserve_window_proportions = true,
-      },
-      update_focused_file = {
-        enable = true,
-        update_root = true,
-      },
-      renderer = {
-        indent_markers = {
-          enable = true, -- 👈 NERDTree-style ├─ └─ tree structure
-        },
-        icons = {
-          webdev_colors = false,
-          show = {
-            file = false,
-            folder = false,
-            folder_arrow = false,
-            git = false,
-          },
-          glyphs = {
-            default = "",
-            symlink = "",
-            bookmark = "",
-            folder = {
-              arrow_closed = "",
-              arrow_open = "",
-              default = "",
-              open = "",
-              empty = "",
-              empty_open = "",
-              symlink = "",
-              symlink_open = "",
-            },
-            git = {
-              unstaged = "",
-              staged = "",
-              unmerged = "",
-              renamed = "",
-              untracked = "",
-              deleted = "",
-              ignored = "",
-            },
-          },
-        },
-      },
-    })
+	"nvim-tree/nvim-tree.lua", -- plugin repository
+	lazy = false,       -- load at startup
+	config = function()
+		-- Nvim Tree setup with marks, move, copy, rename, etc.
+		require("nvim-tree").setup({
+			sort = {
+				sorter = "case_sensitive",
+			},
+			view = {
+				width = 30,
+				side = "left",
+			},
+			renderer = {
+				group_empty = true,
+				icons = {
+					show = {
+						file = false,
+						folder = false,
+						folder_arrow = false,
+						git = false,
+					}
+				},
+			},
+			filters = {
+				dotfiles = true,
+			},
+			git = {
+				enable = false,
+			},
+		})
 
-    -- Open tree on startup but keep focus on the file
-    vim.api.nvim_create_autocmd("VimEnter", {
-      callback = function()
-        require("nvim-tree.api").tree.open()
-        vim.cmd.wincmd("p")
-      end,
-    })
+		local api = require("nvim-tree.api")
+		--api.tree.toggle()
+		--api.fs.rename()
+		--api.fs.remove()
+		--api.fs.copy.node() -- copy current node
+		--api.fs.cut.node() -- cut current node
+		--api.fs.paste.node() -- paste node
 
-    -- Optional keymap to toggle file tree without losing focus
-    vim.keymap.set("n", "<leader>e", function()
-      require("nvim-tree.api").tree.toggle()
-      vim.cmd.wincmd("p")
-    end, { desc = "Toggle file tree (keep focus in buffer)" })
-  end,
+
+		-- Keymaps for Nvim Tree
+		vim.keymap.set("n", "<leader>e", api.tree.toggle, { desc = "Toggle Nvim Tree" })
+		vim.keymap.set("n", "<leader>m", api.marks.toggle, { desc = "Toggle mark" })
+		vim.keymap.set("n", "<leader>x", api.fs.cut, { desc = "Cut" })
+		vim.keymap.set("n", "<leader>c", api.fs.copy.node, { desc = "Copy" })
+		vim.keymap.set("n", "<leader>p", api.fs.paste, { desc = "Paste" })
+		vim.keymap.set("n", "<leader>r", api.fs.rename, { desc = "Rename" })
+		vim.keymap.set("n", "<leader>d", api.fs.remove, { desc = "Delete" })
+	end,
 }
-
