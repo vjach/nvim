@@ -1,0 +1,11 @@
+{
+  "conform.nvim": { "branch": "master", "commit": "5f5152fae39a57e3a04cbce09fb21e10c49c9d95" },
+  "copilot.lua": { "branch": "master", "commit": "e78d1ffebdf6ccb6fd8be4e6898030c1cf5f9b64" },
+  "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "8f1a3e6eecb638817e8999aaa16ada27cd54d867" },
+  "mason.nvim": { "branch": "main", "commit": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800" },
+  "nvim-lspconfig": { "branch": "master", "commit": "d20d83b3f24f5884da73a9fc92fdc47e778b8d0d" },
+  "nvim-tree.lua": { "branch": "master", "commit": "b8b44b6a2494d086a9177251a119f9daec6cace8" },
+  "nvim-treesitter": { "branch": "main", "commit": "6e42d823ce0a5a76180c473c119c7677738a09d1" },
+  "vim-solarized8": { "branch": "master", "commit": "19fd5a93162e1014e8ea8c0fedce26392e63f7ae" }
+}
