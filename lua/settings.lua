@@ -18,3 +18,5 @@ vim.keymap.set("n", "<leader>f", function()
 end, { desc = "Format file with conform.nvim" })
 
 vim.keymap.set("n", ",b", "<cmd>ls<CR>:b ", { desc = "List buffers" })
+vim.opt.ttimeout = true
+vim.opt.ttimeoutlen = 10

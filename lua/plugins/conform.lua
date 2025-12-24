@@ -8,10 +8,8 @@ return {
                     cpp = { "clang_format" },
                     c = { "clang_format" },
                 },
-                format_on_save = {
-                    timeout_ms = 1000,
-                    lsp_fallback = true,
-                },
+                format_on_save = false,
+                lsp_fallback = true,
             })
 
             vim.keymap.set("n", "<leader>f", function()

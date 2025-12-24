@@ -10,7 +10,7 @@ return {
             },
             suggestion = {
                 enabled = true,
-                auto_trigger = true,
+                auto_trigger = false,
                 keymap = {
                     accept_word = "<C-w>", -- Ctrl+L to accept next word
                     accept_line = "<C-l>", -- Ctrl+Enter to accept full suggestion
