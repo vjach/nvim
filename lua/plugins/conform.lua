@@ -1,20 +1,22 @@
 return {
-    {
-        "stevearc/conform.nvim",
-        config = function()
-            require("conform").setup({
-                formatters_by_ft = {
-                    python = { "black" },
-                    cpp = { "clang_format" },
-                    c = { "clang_format" },
-                },
-                format_on_save = false,
-                lsp_fallback = true,
-            })
+	{
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					python = { "black" },
+					cpp = { "clang_format" },
+					c = { "clang_format" },
+					cmake = { "cmake_format" },
+					lua = { "stylua" },
+				},
+				format_on_save = false,
+				lsp_fallback = true,
+			})
 
-            vim.keymap.set("n", "<leader>f", function()
-                require("conform").format({ lsp_fallback = true })
-            end, { desc = "Format current file with Conform" })
-        end,
-    },
+			vim.keymap.set("n", "<leader>f", function()
+				require("conform").format({ lsp_fallback = true })
+			end, { desc = "Format current file with Conform" })
+		end,
+	},
 }
