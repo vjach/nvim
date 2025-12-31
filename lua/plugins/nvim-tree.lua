@@ -1,6 +1,6 @@
 return {
 	"nvim-tree/nvim-tree.lua", -- plugin repository
-	lazy = false,       -- load at startup
+	lazy = false, -- load at startup
 	config = function()
 		-- Nvim Tree setup with marks, move, copy, rename, etc.
 		require("nvim-tree").setup({
@@ -19,7 +19,7 @@ return {
 						folder = false,
 						folder_arrow = false,
 						git = false,
-					}
+					},
 				},
 			},
 			filters = {
@@ -37,7 +37,6 @@ return {
 		--api.fs.copy.node() -- copy current node
 		--api.fs.cut.node() -- cut current node
 		--api.fs.paste.node() -- paste node
-
 
 		-- Keymaps for Nvim Tree
 		vim.keymap.set("n", "<leader>e", api.tree.toggle, { desc = "Toggle Nvim Tree" })

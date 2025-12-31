@@ -13,6 +13,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then return end
+
+    -- Disable semantic highlighting from LSP
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+})
+
 --
 --
 --
