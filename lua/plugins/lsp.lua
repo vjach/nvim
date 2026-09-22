@@ -4,6 +4,7 @@ return {
 		dependencies = {
 			"mason-org/mason.nvim",
 			"neovim/nvim-lspconfig",
+			"saghen/blink.cmp",
 		},
 		config = function()
 			vim.diagnostic.config({
@@ -11,6 +12,10 @@ return {
 				signs = true,
 				underline = true,
 				severity_sort = true,
+			})
+
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
 			})
 
 			vim.lsp.config("pyright", {
