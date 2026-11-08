@@ -2,24 +2,26 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	lazy = false,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
 	config = function()
-		require("nvim-treesitter").install({
-			"c",
-			"cpp",
-			"lua",
-			"python",
-			"javascript",
-			"html",
-			"css",
-			"json",
-			"bash",
-			"yaml",
-			"markdown",
-			"cmake",
+		require("nvim-treesitter.configs").setup({
+			ensure_installed = {
+				"c",
+				"cpp",
+				"lua",
+				"python",
+				"javascript",
+				"html",
+				"css",
+				"json",
+				"bash",
+				"yaml",
+				"markdown",
+				"cmake",
+			},
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false,
+			},
 		})
 
 		-- Start Tree-sitter highlighting for buffers with parsers
